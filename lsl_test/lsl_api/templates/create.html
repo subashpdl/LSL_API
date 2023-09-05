@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create LSL Script</title>
+    <script>
+        function insertNewlines() {
+            var scriptTextArea = document.getElementById('script');
+            var scriptText = scriptTextArea.value;
+            var scriptWithNewlines = scriptText.replace(/(?:\r\n|\r|\n)/g, '\n');
+            scriptTextArea.value = scriptWithNewlines;
+        }
+    </script>
+</head>
+<body>
+    <h1>Create LSL Script</h1>
+    <form method="post" action="{% url 'lsl_api:create' %}">
+        {% csrf_token %}
+        <label for="script">LSL Script:</label><br>
+        <textarea name="script" id="script" cols="30" rows="10"></textarea><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" id="email"><br><br>
+
+        <label for="share">Share:</label>
+        <input type="checkbox" name="share" id="share"><br><br>
+
+        <label for="type">Type:</label><br>
+        <input type="text" name="type" id="type"><br><br>
+
+        <input type="submit" value="Submit" onclick="insertNewlines()">
+    </form>
+</body>
+</html>
